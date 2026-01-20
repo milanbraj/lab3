@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        LOCAL_CHART_PATH = "/charts/nginx-custom" 
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -10,7 +14,7 @@ pipeline {
 
         stage('Helm Lint') {
             steps {
-                sh "helm lint ./charts/nginx-custom"
+                sh "helm lint ${LOCAL_CHART_PATH}"
             }
         }
 
@@ -18,7 +22,7 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'minikube-kubeconfig', variable: 'KUBECONFIG')]) {
                     sh """
-                    helm upgrade --install lab-ubuntu-nginx ./charts/nginx_lb \
+                    helm upgrade --install lab-ubuntu-nginx ${LOCAL_CHART_PATH} \
                         --namespace default \
                         --wait
                     """
