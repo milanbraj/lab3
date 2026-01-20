@@ -14,7 +14,11 @@ pipeline {
 
         stage('Helm Lint') {
             steps {
-                sh "helm lint ${LOCAL_CHART_PATH}"
+                sh """
+                ls -R
+                helm lint ${LOCAL_CHART_PATH}
+                
+                """
             }
         }
 
