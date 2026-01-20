@@ -50,16 +50,12 @@ securityContext: {}
   # runAsUser: 1000
 
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+
 service:
   type: LoadBalancer
-  ## @param service.ports.http Service HTTP port
-  ## @param service.ports.https Service HTTPS port
-  ##
-  ports:
-    http: 81
-    https: 9443
-  targetPort:
-    http: 80
+  port: 81
+  targetPort: 80
+
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
