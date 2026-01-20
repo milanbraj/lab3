@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        LOCAL_CHART_PATH = "/charts/nginx-custom" 
+        LOCAL_CHART_PATH = "charts/nginx-custom" 
     }
 
     stages {
